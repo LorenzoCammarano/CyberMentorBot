@@ -1,0 +1,38 @@
+# === Python ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pdb
+*.egg
+*.egg-info/
+dist/
+build/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# === VS Code ===
+.vscode/
+
+# === Logs & misc ===
+*.log
+*.sqlite3
+*.db
+
+# === Docker ===
+*.pid
+docker-compose.override.yml
+
+# === Secrets ===
+.env
+*.pem
+cert.pem
+key.pem
+
+# === OS Generated ===
+.DS_Store
+Thumbs.db

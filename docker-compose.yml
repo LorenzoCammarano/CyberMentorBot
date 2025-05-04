@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  cybermentorbot:  # Nome del container
+    build: .
+    container_name: CyberMentorBot
+    env_file:
+      - .env  # Carica le variabili d'ambiente dal file .env
+    restart: unless-stopped  # Riavvia il container se si ferma
+    ports:
+      - "443:443"  # Porta HTTPS per il webhook
+    volumes:
+      - ${CERT_PATH}:/certs/cert.pem  # Certificato SSL (assicurati che ${CERT_PATH} punti al file corretto)
+      - ${KEY_PATH}:/certs/key.pem  # Certificato della chiave
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}  # Definisce la variabile per il bot token
+      - WEBHOOK_URL=${WEBHOOK_URL}  # Definisce l'URL per il webhook
