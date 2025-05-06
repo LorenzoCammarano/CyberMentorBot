@@ -1,0 +1,1 @@
+Bot di Telegram per aiutare l’utente a riconoscere, evitare e capire i principali rischi informatici quotidiani (phishing, social engineering, truffe, app malevole...) in modo interattivo e personalizzato.
