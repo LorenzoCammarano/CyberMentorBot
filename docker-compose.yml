@@ -1,17 +1,20 @@
 version: "3.8"
 
 services:
-  cybermentorbot:  # Nome del container
+  cybermentorbot:
     build: .
     container_name: CyberMentorBot
     env_file:
-      - .env  # Carica le variabili d'ambiente dal file .env
-    restart: unless-stopped  # Riavvia il container se si ferma
+      - .env
+    restart: unless-stopped
     ports:
-      - "443:443"  # Porta HTTPS per il webhook
+      - "9443:9443"
     volumes:
-      - ${CERT_PATH}:/certs/cert.pem  # Certificato SSL (assicurati che ${CERT_PATH} punti al file corretto)
-      - ${KEY_PATH}:/certs/key.pem  # Certificato della chiave
+      - /etc/letsencrypt/live/info.lorenzocammarano.me:/certs:ro
     environment:
-      - BOT_TOKEN=${BOT_TOKEN}  # Definisce la variabile per il bot token
-      - WEBHOOK_URL=${WEBHOOK_URL}  # Definisce l'URL per il webhook
+      - BOT_TOKEN=${BOT_TOKEN}
+      - WEBHOOK_URL=${WEBHOOK_URL}
+      - OVH_API_KEY=${OVH_API_KEY}
+      - OVH_API_URL=${OVH_API_URL}
+      - SSL_CERT_PATH=/certs/fullchain.pem
+      - SSL_KEY_PATH=/certs/privkey.pem
