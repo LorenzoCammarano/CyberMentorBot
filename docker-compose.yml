@@ -1,20 +1,16 @@
-version: "3.8"
+version: "3.9"
 
 services:
-  cybermentorbot:
+  telegram-bot:
     build: .
-    container_name: CyberMentorBot
-    env_file:
-      - .env
-    restart: unless-stopped
+    container_name: cybermentor_bot
     ports:
-      - "9443:9443"
-    volumes:
-      - /etc/letsencrypt/live/info.lorenzocammarano.me:/certs:ro
+      - "8443:8443"
     environment:
       - BOT_TOKEN=${BOT_TOKEN}
       - WEBHOOK_URL=${WEBHOOK_URL}
-      - OVH_API_KEY=${OVH_API_KEY}
-      - OVH_API_URL=${OVH_API_URL}
-      - SSL_CERT_PATH=/certs/fullchain.pem
-      - SSL_KEY_PATH=/certs/privkey.pem
+      - GROQ_API_KEY=${GROQ_API_KEY}
+    volumes:
+      - ./certs/fullchain.pem:/etc/letsencrypt/live/info.lorenzocammarano.me/fullchain.pem:ro
+      - ./certs/privkey.pem:/etc/letsencrypt/live/info.lorenzocammarano.me/privkey.pem:ro
+    restart: unless-stopped
