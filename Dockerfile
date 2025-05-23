@@ -1,23 +1,28 @@
-# Usa un'immagine Python leggera
-FROM python:3.13-slim
+# Usa immagine Python slim compatibile (3.11)
+FROM python:3.11-slim
 
-# Imposta variabili d'ambiente per evitare prompt interattivi e problemi con encoding
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
+# Setta la working directory
+WORKDIR /app
 
-# Crea e imposta la directory di lavoro
-WORKDIR /app/bot
+# Aggiorna apt e installa dipendenze di sistema per SSL e build
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libffi-dev \
+    libssl-dev \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 
-# Copia i requirements e installa le dipendenze
+# Copia i file requirements
 COPY requirements.txt .
 
+# Installa i pacchetti Python necessari
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copia l'intero contenuto del progetto
-COPY . /app/
+# Copia il resto del progetto
+COPY . .
 
-# Espone la porta per Flask
-EXPOSE 9443
+# Esponi la porta 8443 (per Flask HTTPS)
+EXPOSE 8443
 
-# Avvia l'applicazione dal modulo corretto
+# Comando di avvio
 CMD ["python", "main.py"]
