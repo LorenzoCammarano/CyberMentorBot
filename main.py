@@ -3,7 +3,6 @@
 import os
 import logging
 import requests
-import ssl
 from dotenv import load_dotenv
 from telegram import Update
 from telegram.ext import (
@@ -22,12 +21,14 @@ WEBHOOK_URL = os.getenv("WEBHOOK_URL")
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 if not TOKEN or not WEBHOOK_URL or not GROQ_API_KEY:
-    raise EnvironmentError("BOT_TOKEN, WEBHOOK_URL o GROQ_API_KEY mancante nel file .env")
+    raise EnvironmentError("Variabili d'ambiente BOT_TOKEN, WEBHOOK_URL o GROQ_API_KEY mancanti")
 
-logging.basicConfig(format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO)
+logging.basicConfig(
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
+)
 logger = logging.getLogger(__name__)
 
-# ─────── AI CON GROQ ───────────────────────────────────
+# ─────── FUNZIONE DI ANALISI AI ─────────────────────────
 
 def analizza_testo_con_groq(testo):
     url = "https://api.groq.com/openai/v1/chat/completions"
@@ -62,24 +63,18 @@ def analizza_testo_con_groq(testo):
         logger.error(f"Errore richiesta Groq: {e}")
         return "⚠️ Errore durante la generazione della risposta."
 
-
-# ─────── HANDLERS ──────────────────────────────────────
+# ─────── HANDLER TELEGRAM ──────────────────────────────
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
     await update.message.reply_html(
-        rf"👋 Ciao {user.mention_html()}! Sono CyberMentor 🤖"
-        "Scrivimi un messaggio sospetto e ti aiuterò a valutarlo.",
+        rf"👋 Ciao {user.mention_html()}! Inviami un messaggio sospetto e ti dirò se può essere rischioso."
     )
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Inviami un messaggio (es. email sospetta o link) e ti dirò se c'è qualcosa di strano.")
-
-async def analizza(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    testo = update.message.text
-    logger.info(f"Messaggio ricevuto: {testo}")
-    risposta = analizza_testo_con_groq(testo)
-    await update.message.reply_text(f"🧠 Risposta AI:\n{risposta}")
+    await update.message.reply_text(
+        "Inviami un messaggio (es. email sospetta o link) e ti dirò se c'è qualcosa di strano."
+    )
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
@@ -92,7 +87,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     response = f"Messaggio ricevuto:\n{text}\n\n🧠 Risposta AI:\n{result}"
     await context.bot.send_message(chat_id=chat_id, text=response)
 
-# ─────── AVVIO ──────────────────────────────────────────
+# ─────── AVVIO APPLICAZIONE ────────────────────────────
 
 if __name__ == "__main__":
     application = Application.builder().token(TOKEN).build()
@@ -101,14 +96,10 @@ if __name__ == "__main__":
     application.add_handler(CommandHandler("help", help_command))
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
 
-    # Set webhook
-    #set_webhook()
-
-    # Avvio con certificato
     application.run_webhook(
         listen="0.0.0.0",
         port=8443,
         webhook_url=WEBHOOK_URL,
-        cert="/etc/letsencrypt/live/info.lorenzocammarano.me/fullchain.pem",
-        key="/etc/letsencrypt/live/info.lorenzocammarano.me/privkey.pem"
+        cert="/path/to/your/fullchain.pem",
+        key="/path/to/your/privkey.pem"
     )
