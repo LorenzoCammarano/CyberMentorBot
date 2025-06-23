@@ -3,7 +3,7 @@ version: "3.9"
 services:
   telegram-bot:
     build: .
-    container_name: cybermentor_bot
+    container_name: telegram_ai_bot
     ports:
       - "8443:8443"
     environment:
@@ -11,6 +11,6 @@ services:
       - WEBHOOK_URL=${WEBHOOK_URL}
       - GROQ_API_KEY=${GROQ_API_KEY}
     volumes:
-      - ./certs/fullchain.pem:/etc/letsencrypt/live/info.lorenzocammarano.me/fullchain.pem:ro
-      - ./certs/privkey.pem:/etc/letsencrypt/live/info.lorenzocammarano.me/privkey.pem:ro
+      - ./certs/fullchain.pem:/etc/letsencrypt/live/domain.example.com/fullchain.pem:ro
+      - ./certs/privkey.pem:/etc/letsencrypt/live/domain.example.com/privkey.pem:ro
     restart: unless-stopped
