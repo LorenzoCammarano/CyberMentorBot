@@ -47,19 +47,19 @@ cd CyberMentorBot
 Crea un file .env nella directory principale del progetto con le seguenti variabili (sostituisci i valori segnaposto):
 
 ```bash
-TELEGRAM_TOKEN=tuo_token_telegram
-GROQ_API_KEY=la_tua_chiave_groq
-GROQ_MODEL=llama3-70b-8192
-WEBHOOK_URL=https://tuo-dominio.it
+TELEGRAM_TOKEN=<tuo_token_telegram>
+GROQ_API_KEY=<la_tua_chiave_groq>
+GROQ_MODEL= llama3-8b-8192
+WEBHOOK_URL=<https://tuo-dominio.it>
 PORT=8443
-CERT_PATH=/etc/letsencrypt/live/tuo-dominio.it/fullchain.pem
-KEY_PATH=/etc/letsencrypt/live/tuo-dominio.it/privkey.pem
+CERT_PATH=</etc/letsencrypt/live/tuo-dominio.it/fullchain.pem>
+KEY_PATH=</etc/letsencrypt/live/tuo-dominio.it/privkey.pem>
 ```
 
 ### 3. Costruisci l’Immagine Docker
 
 ```bash
-docker build -t cybermentor_bot .
+docker build -t cybermentorbot .
 ```
 
 ### 4. Avvia il Bot con Docker
@@ -73,7 +73,7 @@ sudo systemctl stop apache2 # o nginx
 
 ```bash
 docker run -d \
-  --name cybermentor_bot \
+  --name cybermentorbot \
   -p 443:8443 \
   --env-file .env \
   -v /etc/letsencrypt:/etc/letsencrypt:ro \
