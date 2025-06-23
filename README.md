@@ -13,7 +13,7 @@ Sfrutta la potenza di un modello LLM avanzato (tramite **Groq**) per analizzare 
 - **Suggerimenti per Evitare Truffe Online**  
   Offre consigli educativi personalizzati per riconoscere ed evitare le minacce più comuni.
 
-- **Risposte Generate da LLaMA 3 70B (via Groq)**  
+- **Risposte Generate da llama3-8b-8192 (via Groq)**  
   Utilizza un modello linguistico all'avanguardia per risposte accurate e pertinenti.
 
 - **Webhook su HTTPS (SSL con Let's Encrypt)**  
