@@ -101,5 +101,7 @@ Hai vinto un premio! Clicca qui: http://badlink.ru
 Il bot analizzerà il contenuto e ti fornirà una risposta dettagliata.
 ```
 
+## ▶️​ Se vuoi testare il mio bot → [CyberMentorBot](https://t.me/Your_CyberMentor_Bot)
+
 ## ✨ Autore
 ### 🔗 Lorenzo Cammarano → [info.lorenzocammarano.me](https://info.lorenzocammarano.me)
