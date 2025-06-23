@@ -1,5 +1,10 @@
 # 🤖 CyberMentorBot
 
+<p align="center">
+  <img src="assets/CyberMentorBot.png" alt="CyberMentorBot banner" width="400"/>
+</p>
+
+
 **CyberMentorBot** è un chatbot Telegram avanzato, progettato per aiutarti a identificare e contrastare tentativi di **phishing**, **truffe online**, e altre **minacce informatiche**.  
 Grazie alla potenza del modello **LLaMA 3** tramite **Groq API**, analizza in tempo reale i messaggi sospetti che ricevi e ti fornisce risposte chiare, sicure e immediate.
 
