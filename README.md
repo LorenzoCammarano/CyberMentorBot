@@ -66,7 +66,7 @@ KEY_PATH=<path_to_ssl_key_on_host>
 docker build -t cybermentorbot .
 ```
 
-### 5. Avvia il Bot
+### 4. Avvia il Bot
 Assicurati che la porta 443 sia libera (ferma Apache/Nginx se necessario):
 
 ```bash
