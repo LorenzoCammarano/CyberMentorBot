@@ -31,7 +31,7 @@ Grazie alla potenza del modello **LLaMA 3** tramite **Groq API**, analizza in te
 
 ## ⚙️ Guida all’Installazione
 
-### 1. Clona il Repository
+### 1. Clona la Repository
 
 ```bash
 git clone https://github.com/tuo-username/CyberMentorBot.git
@@ -39,7 +39,7 @@ cd CyberMentorBot
 ```
 
 ### 2. Crea il file .env
-Crea un file .env nella root del progetto e configura così:
+Crea un file .env nella root del progetto e che abbia questo tipo di configurazione:
 ```bash
 # Token del bot Telegram
 BOT_TOKEN=<your_telegram_bot_token>
@@ -59,7 +59,7 @@ CERT_PATH=<path_to_ssl_certificate_on_host>
 KEY_PATH=<path_to_ssl_key_on_host>
 ```
 
-### 🔐 Assicurati che il tuo dominio punti al server ed è configurato con HTTPS.
+### 🔐 Assicurati che il tuo dominio punti al server e che sia configurato con HTTPS.
 
 ### 3. Costruisci l’Immagine Docker
 ```bash
@@ -73,7 +73,7 @@ Assicurati che la porta 443 sia libera (ferma Apache/Nginx se necessario):
 sudo systemctl stop apache2 nginx
 ```
 
-#### E poi avvia il container:
+#### Successivamente avvia il container:
 
 ```bash
 docker run -d \
@@ -116,7 +116,7 @@ Il bot analizzerà il testo e risponderà con una valutazione.</pre>
 
 <pre> Comando	Descrizione
 /start → Inizia la conversazione con il bot
-/help → Mostra le istruzioni e suggerimenti
+/help → Mostra le istruzioni e i suggerimenti
 testo → Qualsiasi messaggio verrà analizzato in automatico </pre>
 
 ## ▶️ Prova il mio Bot
