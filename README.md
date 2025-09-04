@@ -1,79 +1,97 @@
+<div align="center">
+  
 # 🤖 CyberMentorBot
+
+</div>
 
 <p align="center">
   <img src="assets/CyberMentorBot.png" alt="CyberMentorBot banner" width="400"/>
 </p>
 
-
-**CyberMentorBot** è un chatbot Telegram avanzato, progettato per aiutarti a identificare e contrastare tentativi di **phishing**, **truffe online**, e altre **minacce informatiche**.  
-Grazie alla potenza del modello **LLaMA 3** tramite **Groq API**, analizza in tempo reale i messaggi sospetti che ricevi e ti fornisce risposte chiare, sicure e immediate.
-
----
-
-## 🚀 Funzionalità Principali
-
-- 🔍 **Analisi dei Messaggi in Tempo Reale**  
-  Rileva contenuti sospetti come link ingannevoli, offerte false o richieste fraudolente.
-
-- 🛡️ **Consigli di Sicurezza Personalizzati**  
-  Ti guida nel riconoscere schemi comuni di truffa con spiegazioni educative.
-
-- 🧠 **Intelligenza Artificiale via LLaMA 3 (Groq)**  
-  Usa `llama3-8b-8192` per offrire risposte affidabili e aggiornate.
-
-- 🔐 **Webhook Sicuro via HTTPS (SSL)**  
-  Comunicazione cifrata tra Telegram e il bot con certificato Let's Encrypt.
-
-- 🐳 **Deploy Semplificato con Docker**  
-  Avvio del bot in pochi comandi, pronto per ambienti di produzione.
+**CyberMentorBot** is an advanced Telegram chatbot designed to help you identify and counter **phishing**, **online scams**, and other **cyber threats**.  
+Powered by the **LLaMA 3** model via **Groq API**, it analyzes suspicious messages in real-time and provides clear, safe, and immediate responses.
 
 ---
 
-## ⚙️ Guida all’Installazione
+### 🗝️ Key Features
 
-### 1. Clona la Repository
+- 🔍 **Real-Time Message Analysis**  
+  Detects suspicious content such as deceptive links, fake offers, or fraudulent requests.
+
+- 🛡️ **Personalized Security Advice**  
+  Guides you in recognizing common scam patterns with educational explanations.
+
+- 🧠 **AI Powered by LLaMA 3 (Groq)**  
+  Uses `llama3-8b-8192` to provide reliable and up-to-date responses.
+
+- 🔐 **Secure Webhook via HTTPS (SSL)**  
+  Encrypted communication between Telegram and the bot using a Let's Encrypt certificate.
+
+- 🐳 **Simplified Docker Deployment**  
+  Launch the bot in just a few commands, ready for production environments.
+
+---
+
+### ⚙️ Installation Guide
+
+#### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/tuo-username/CyberMentorBot.git
+git clone https://github.com/your-username/CyberMentorBot.git
 cd CyberMentorBot
 ```
 
-### 2. Crea il file .env
-Crea un file .env nella root del progetto e che abbia questo tipo di configurazione:
+<br>
+
+#### 2. Create the .env File
+Create a .env file in the project root with the following configuration:
+
+<br>
+
 ```bash
-# Token del bot Telegram
+# Telegram Bot Token
 BOT_TOKEN=<your_telegram_bot_token>
 
-# Chiave API del provider LLM (es. Groq)
+# LLM Provider API Key (e.g., Groq)
 GROQ_API_KEY=<your_groq_api_key>
 
-# URL pubblico del webhook (HTTPS, accessibile da Telegram)
+# Public Webhook URL (HTTPS, accessible by Telegram)
 WEBHOOK_URL=<your_public_https_webhook_url>
 
-# Percorsi ai certificati SSL usati all'interno del container
+# SSL certificate paths used inside the container
 SSL_CERT_PATH=/path/to/ssl_certificate_inside_container
 SSL_KEY_PATH=/path/to/ssl_key_inside_container
 
-# Percorsi ai certificati SSL sul sistema host (usati dal bot Python)
+# SSL certificate paths on the host system (used by Python bot)
 CERT_PATH=<path_to_ssl_certificate_on_host>
 KEY_PATH=<path_to_ssl_key_on_host>
 ```
 
-### 🔐 Assicurati che il tuo dominio punti al server e che sia configurato con HTTPS.
+<br>
 
-### 3. Costruisci l’Immagine Docker
+---
+
+#### ⚠️ Make sure your domain points to the server and is configured with HTTPS 🔐.
+
+---
+
+<br>
+
+####  3. Build the Docker Image
 ```bash
 docker build -t cybermentorbot .
 ```
 
-### 4. Avvia il Bot
-Assicurati che la porta 443 sia libera (ferma Apache/Nginx se necessario):
+<br>
+
+#### 4. Run the Bot
+Ensure port 443 is free (stop Apache/Nginx if necessary):
 
 ```bash
 sudo systemctl stop apache2 nginx
 ```
 
-#### Successivamente avvia il container:
+Then start the container:
 
 ```bash
 docker run -d \
@@ -84,46 +102,67 @@ docker run -d \
   cybermentorbot
 ```
 
-## 🔐 Certificati SSL (Let's Encrypt)
-Per far funzionare il webhook di Telegram, è necessario un certificato HTTPS valido.
-Puoi generarne uno con Certbot:
+<br>
+
+#### 🔐 SSL Certificates (Let's Encrypt)
+A valid HTTPS certificate is required for Telegram webhook.
+You can generate one with Certbot:
 
 ```bash
 sudo apt install certbot
-sudo certbot certonly --standalone -d tuo-dominio.it
+sudo certbot certonly --standalone -d your-domain.com
 ```
 
-I file verranno salvati in /etc/letsencrypt/live/tuo-dominio.it/
+The files will be saved in `/etc/letsencrypt/live/your-domain.com/`
 
-## 🧠 Dettagli sul Modello AI
-CyberMentorBot si basa sul modello LLaMA 3 (llama3-8b-8192), fornito tramite Groq API.
-Ogni messaggio inviato viene processato in tempo reale da un prompt specializzato per identificare comportamenti malevoli come:
+<br>
+
+---
+
+### 🧠 AI Model Details
+CyberMentorBot uses the LLaMA 3 model (`llama3-8b-8192`) via Groq API. Each message is processed in real-time with a specialized prompt to identify malicious behaviors such as:
 
 <ul>
   <li>Phishing</li>
-  <li>Link sospetti</li>
-  <li>Frodi bancarie</li>
-  <li>Schemi di truffa</li>
+  <li>Suspicious links</li>
+  <li>Bank fraud</li>
+  <li>Scam schemes</li>
 </ul>
 
-## 🧪 Test del Bot
-Puoi testare il bot direttamente da Telegram inviando un messaggio come:
+<br>
 
-<pre> Hai vinto un premio! Inserisci i tuoi dati qui: http://badlink.ru
-Il bot analizzerà il testo e risponderà con una valutazione.</pre>
+---
 
-## 🧰 Comandi Disponibili
+### 🧪 Bot Testing
+You can test the bot directly on Telegram by sending a message like:
 
-<pre> Comando	Descrizione
-/start → Inizia la conversazione con il bot
-/help → Mostra le istruzioni e i suggerimenti
-testo → Qualsiasi messaggio verrà analizzato in automatico </pre>
+<pre> You won a prize! Enter your details here: http://badlink.ru
+The bot will analyze the text and respond with an assessment.</pre>
 
-## ▶️ Prova il mio Bot
-👉 CyberMentorBot 🔗 [Your_CyberMentor_Bot](https://t.me/Your_CyberMentor_Bot)
+<br>
 
-## 👨‍💻 Autore  
-Lorenzo Cammarano 🔗 [info.lorenzocammarano.me](https://lorenzocammarano.me/)
+---
+
+### 🖥️ Available Commands
+
+| **Command**   | **Description**                                    |
+|-----------|------------------------------------------------|
+| ``` /start ```    | Start a conversation with the bot             |
+| ``` /help```     | Show instructions and tips                    |
+| ``` <text>```    | Any message will be automatically analyzed   |
 
 
+<br>
+
+---
+
+### ❇️ Try My Bot ⤵️
+🤖 CyberMentorBot 🔗 [Your_CyberMentor_Bot](https://t.me/Your_CyberMentor_Bot)
+
+<br>
+
+---
+
+### 👨‍💻 Author  
+🔹Lorenzo Cammarano 🔗 [info.lorenzocammarano.me](https://lorenzocammarano.me/)
 
